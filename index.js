@@ -11,6 +11,8 @@ const requestRoute = require('./routes/request');
 
 dotenv.config();
 
+var port = process.env.PORT || 8080
+
 //Connect to DB
 mongoose.connect(
     process.env.MONGO_URI,
@@ -30,6 +32,6 @@ app.use('/api/user', authRoute);
 app.use('/api/post', postRoute);
 app.use('/api/request', requestRoute);
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log('Server Up and running!');
 });
