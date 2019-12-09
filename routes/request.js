@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Request = require('../model/Request');
+const Request = require('../db/models/Request');
 const { requestValidation } = require('../validation');
 
 router.post('/', async (req,res) => {
@@ -17,7 +17,7 @@ router.post('/', async (req,res) => {
     });
     try{
         const savedRequest = await request.save();
-        res.send({request: request._id});
+        res.send(request);
     }catch(err){
         res.status(400).send(err);
     }
