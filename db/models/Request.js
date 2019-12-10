@@ -13,7 +13,7 @@ const requestSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    plateNumber: {
+    licensePlate: {
         type: String,
         required: true
     },

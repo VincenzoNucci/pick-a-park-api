@@ -3,6 +3,7 @@ const app = express();
 const db = require('./db/index.js');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 //Import routes
 const authRoute = require('./routes/auth');
@@ -11,14 +12,13 @@ const requestRoute = require('./routes/request');
 
 dotenv.config();
 
-var port = process.env.PORT || 8080
+var port = process.env.PORT || 3000
 
 //Connect to DB
-if(process.env.NODE_ENV !== 'test')
-    db.connect();
+db.connect().then(() => console.log('Connected to DB!'));
 
 //Use Middlewares
-app.use(express.json()); //Body-parser
+app.use(bodyParser.json()); //Body-parser
 app.use(cors());
 
 //Route Middlewares - where the user will navigate

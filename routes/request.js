@@ -12,7 +12,7 @@ router.post('/', async (req,res) => {
         startingLocation : req.body.startingLocation,
         targetLocation : req.body.targetLocation,
         duration : req.body.duration,
-        plateNumber: req.body.plateNumber,
+        licensePlate: req.body.licensePlate,
         status: 'Awaiting payment'
     });
     try{
