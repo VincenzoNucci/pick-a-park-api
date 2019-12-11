@@ -44,6 +44,10 @@ app.get('/', (req,res) => {
     res.sendFile(path.join(__dirname + '/wwwroot/views/home/index.html'));
 });
 
+app.get('/request', (req,res) => {
+    res.sendFile(path.join(__dirname + '/wwwroot/views/home/request.html'));
+})
+
 app.listen(port, () => {
     console.log('Server Up and running!');
 });
