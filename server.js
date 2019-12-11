@@ -26,7 +26,9 @@ process.env.PORT = port
 app.set('view engine', 'ejs');
 
 //Connect to DB
-db.connect().then(() => console.log('Connected to DB!'));
+db.connect()
+    .then(() => console.log('Connected to DB!'))
+    .catch((err) => { console.log('Unable to connect to database'); /*TODO kill the server if unable to connect*/});
 
 //Use Middlewares
 app.use(bodyParser.json()); //Body-parser

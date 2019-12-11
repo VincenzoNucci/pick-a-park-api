@@ -18,7 +18,7 @@ router.post('/', async (req,res) => {
     });
     try{
         const savedRequest = await request.save();
-        res.send(request);
+        res.header('Acces-Control-Allow-Origin','*').send(request);
     }catch(err){
         res.status(400).send(err);
     }
