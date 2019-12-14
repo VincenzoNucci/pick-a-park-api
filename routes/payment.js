@@ -1,17 +1,20 @@
 const router = require('express').Router();
 const dotenv = require('dotenv');
+const Request = require('../db/models/Request');
+const { requestValidation } = require('../validation');
 const paypal = require('paypal-rest-sdk');
 dotenv.config();
 
-router.post('/', (req,res) => {
+router.get('/', async (req,res) => {
+
     const create_payment_json = {
         "intent": "sale",
         "payer": {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://0.0.0.0:"+process.env.PORT+"/api/pay/success",
-            "cancel_url": "http://0.0.0.0:"+process.env.PORT+"/api/pay/cancel"
+            "return_url": "http://localhost:"+process.env.PORT+"/api/pay/success",
+            "cancel_url": "http://localhost:"+process.env.PORT+"/api/pay/cancel"
         },
         "transactions": [{
             "item_list": {
@@ -19,12 +22,12 @@ router.post('/', (req,res) => {
                     "name": "parking place",
                     "sku": "001",
                     "price": "20.00",
-                    "currency": "USD",
+                    "currency": "EUR",
                     "quantity": 1
                 }]
             },
             "amount": {
-                "currency": "USD",
+                "currency": "EUR",
                 "total": "20.00"
             },
             "description": "your receipt of the booking of the parking."
